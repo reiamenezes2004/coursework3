@@ -1,50 +1,38 @@
 <template>
-  <div class="activity-box">
-    <!-- Loop through sortedProducts and display lesson items -->
-    <div v-for="activity in sortedProducts" :key="activity.id" class="activity-item">
-      <!-- Lesson item content -->
-      <figure>
-        <img :src="activity.image" alt="Activity Image">
-      </figure>
-      <div class="activity-details">
-        <h2>{{ activity.title }}</h2>
-        <p>{{ activity.location }}</p>
-        <p>Available Spaces: {{ activity.availableInventory }}</p>
-        <p class="activity-price">Price: AED {{ activity.price }}</p>
-        <div>
-          <span v-for="n in activity.rating" :key="n" class="star">★</span>
-          <span v-for="n in 5 - activity.rating" :key="n" class="star">☆</span>
-        </div>
-        <button @click="addToCart(activity)" :disabled="!canAddToCart(activity)" :class="{ 'sold-out-button': !canAddToCart(activity) }" class="buy-button">
-          {{ canAddToCart(activity) ? 'Add to cart' : 'All out!' }}
-        </button>
-      </div>
+  <div class="lesson-list">
+    <h2>After School Activities</h2>
+    <div v-for="lesson in lessons" :key="lesson.id" class="lesson-item">
+      <!-- Display each lesson -->
+      <h3>{{ lesson.title }}</h3>
+      <!-- Add other details as needed -->
     </div>
   </div>
 </template>
 
 <script>
 export default {
+  name: "LessonList",
   props: {
-    sortedProducts: Array // Passed from parent component
-  },
-  methods: {
-    addToCart(activity) {
-      // Emit an event to notify the parent component that an activity has been added to the cart
-      this.$emit('add-to-cart', activity);
+    lessons: {
+      type: Array,
+      required: true,
     },
-    canAddToCart(activity) {
-      return activity.availableInventory > 0;
-    }
-  }
-}
+  },
+};
 </script>
 
-<style scoped>
-.activity-box {
-  display: flex;
-  flex-wrap: wrap;
+<style>
+body {
+  background-color: #577099;
+  font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+  margin: 0; 
+  text-align: center;
+}
+
+.sort {
+  text-align: left;
   padding-left: 35px;
+  flex-grow: 1;
 }
 
 .activity-item {
@@ -59,24 +47,31 @@ export default {
 }
 
 .activity-item figure {
+  padding-left: 0.5px;
   width: 70%;
+  background-color: #92BBFF;
   height: 130px;
+  align-items: center;
   overflow: hidden;
 }
 
 .activity-item img {
   width: 100%;
   height: 100%;
+  background-color: #92BBFF;
   object-fit: cover;
 }
 
 .activity-item .activity-details {
   padding: 3px;
+  font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
 }
 
 .activity-item h2 {
   font-size: 15pt;
+  font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
   text-align: center;
+  margin: auto;
 }
 
 .activity-item button {
@@ -97,7 +92,64 @@ export default {
   cursor: not-allowed;
 }
 
-.star {
-  color: gold;
+.checkout-button {
+  background-color: #66B266;
+  color: white;
+  border: none;
+  border-radius: 10px;
+  padding: 10px 20px;
+  font-size: 18px;
+  cursor: pointer;
+  display: flex;
+  align-items: right;
+  margin-left: auto;
+}
+
+.checkout-button:disabled {
+  background-color: #7a7a7a;
+  cursor: not-allowed;
+}
+
+.checkout .checkout-container {
+  max-width: 600px;
+  margin: 20px auto;
+  background-color: #ffffff;
+  padding: 20px;
+  border-radius: 10px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.checkout .checkout-container input {
+  width: 70%;
+  padding: 5px;
+  margin-bottom: 10px;
+  border: 3px solid #ccc;
+  border-radius: 5px;
+}
+
+.checkout .checkout-container button {
+  background-color: #66B266;
+  color: white;
+  border: none;
+  border-radius: 10px;
+  padding: 10px 20px;
+  font-size: 18px;
+  cursor: pointer;
+  display: block;
+  margin-top: 10px;
+  margin-left: auto;
+}
+
+.checkout .checkout-container button[disabled] {
+  background-color: gray;
+  cursor: not-allowed;
+  color: #ccc; 
+}
+
+.cart-item {
+  border: 1px solid #ccc;
+  padding: 10px;
+  margin-bottom: 10px;
+  background-color: #f9f9f9;
 }
 </style>
