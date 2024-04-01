@@ -30,11 +30,7 @@ self.addEventListener('install', (e) => {
 );
  });
 
- self.addEventListener('fetch', function (e){
-    if (e.request.method !== 'GET') {
-        return; // Do not cache responses for non-GET requests
-    }
-
+self.addEventListener('fetch', function (e){
     e.respondWith(
         caches.match(e.request).then(function (r){
             // console.log('[Service Worker] Fetching resource: ' + e.request.url);
