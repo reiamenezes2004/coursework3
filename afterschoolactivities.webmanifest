@@ -4,12 +4,12 @@
     "description": "my online after school activity store",
     "icons": [
         {
-            "src": "images/logo.png",
+            "src": "images/logo-192.png",
             "sizes": "192x192",
             "type": "images/png"
         },
         {
-            "src": "images/logo.png",
+            "src": "images/logo-512.png",
             "sizes": "512x512",
             "type": "images/png"
         }
