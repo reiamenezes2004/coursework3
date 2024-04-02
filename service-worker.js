@@ -1,4 +1,4 @@
-var cacheName = 'afterschoolactivitiess-v1';
+var cacheName = 'afterschoolactivities-v1';
 var cacheFiles = [
     'index.html',
     'activities.js',
