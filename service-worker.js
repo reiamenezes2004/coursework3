@@ -3,7 +3,6 @@ var cacheFiles = [
     'index.html',
     'activities.js',
     'afterschoolactivities.webmanifest',
-    'products.js',
     'package.json',
     'server.js',
     'styles.css',
