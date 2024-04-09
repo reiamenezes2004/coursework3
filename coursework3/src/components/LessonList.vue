@@ -2,10 +2,8 @@
   <div class="lesson-list">
     <h2>After School Activities</h2>
     <div v-for="lesson in lessons" :key="lesson.id" class="lesson-item">
-      <!-- Display each lesson -->
       <h3>{{ lesson.title }}</h3>
-      <!-- Add other details as needed -->
-    </div>
+\    </div>
   </div>
 </template>
 
